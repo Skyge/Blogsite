@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %} Skyge的博客 {% endblock %}
+{% block headmessage %}
+    <h3 style="font-family:楷体;">本站文章列表</h3>
+{% endblock %}
+{% block content %}
+    {%  for post in posts %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <p style="font-family:微软雅黑;font-size:14pt;font-weight: bold">
+                    <a href="/post/{{post.category}}">{{ post.title }}</a>
+                </p>
+            </div>
+            <div class="panel-body" style="background-color: #ffffdd">
+                <p >
+                    {{ post.text | truncatechars:50 }}
+                </p>
+            </div>
+            <div class="panel-footer" >
+                <p >
+                    发布时间：{{ post.created_date | date:"Y m d,h:m:s" }}
+                </p>
+            </div>
+        </div>
+
+    {% endfor %}
+{% endblock %}
+
+        <!--将进酒-->
+
+<!--唐代：李白-->
+
+<!--君不见，黄河之水天上来，奔流到海不复回。-->
+<!--君不见，高堂明镜悲白发，朝如青丝暮成雪。-->
+<!--人生得意须尽欢，莫使金樽空对月。-->
+<!--天生我材必有用，千金散尽还复来。-->
+<!--烹羊宰牛且为乐，会须一饮三百杯。-->
+<!--岑夫子，丹丘生，将进酒，杯莫停。-->
+<!--与君歌一曲，请君为我倾耳听。(倾耳听 一作：侧耳听)-->
+<!--钟鼓馔玉不足贵，但愿长醉不复醒。(不足贵 一作：何足贵；不复醒 一作：不愿醒/不用醒)-->
+<!--古来圣贤皆寂寞，惟有饮者留其名。(古来 一作：自古；惟 通：唯)-->
+<!--陈王昔时宴平乐，斗酒十千恣欢谑。-->
+<!--主人何为言少钱，径须沽取对君酌。-->
+<!--五花马，千金裘，呼儿将出换美酒，与尔同销万古愁。-->
+
+        <!--http://58pic.ooopic.com/58pic/21/44/89/5770abf8c905f.jpg-->
+
+    <!--望江南·超然台作-->
+
+<!--【作者】苏轼 【朝代】宋 译文对照-->
+<!--春未老， 风细柳斜斜。 试上超然台上望， 半壕春水一城花。 烟雨暗千家。-->
+<!--寒食后， 酒醒却咨嗟。 休对故人思故国， 且将新火试新茶。 诗酒趁年华。-->
+
+        <!--http://img3.ph.126.net/GVjq_1taLVXGWAW3Y1-g8Q==/6598152785609544543.jpg-->
+
+    <!--芙蓉楼送辛渐-->
+
+<!--【作者】王昌龄 【朝代】唐 译文对照-->
+<!--寒雨连江夜入吴， 平明送客楚山孤。-->
+<!--洛阳亲友如相问， 一片冰心在玉壶。-->
+
+        <!--https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504101976973&di=c34b0167b73223ed614cddb615088b3d&imgtype=0&src=http%3A%2F%2F1803.img.pp.sohu.com.cn%2Fimages%2Fblog%2F2008%2F9%2F13%2F11%2F15%2F11d00956f32g213.jpg-->
+
+    <!--南歌子词二首 /杨柳枝词-->
+
+<!--【作者】温庭筠 【朝代】唐 译文对照-->
+<!--一尺深红胜曲尘， 天生旧物不如新。-->
+<!--合欢桃核终堪恨， 里许元来别有人。-->
+<!--井底点灯深烛伊， 共郎长行莫围棋。-->
+<!--玲珑骰子安红豆， 入骨相思知不知。-->
+
+<!--http://imgsrc.baidu.com/forum/w%3D580/sign=004ea5b9372ac65c6705667bcbf0b21d/aa99f7246b600c33bd8da711184c510fdbf9a169.jpg-->
+
+</body>
+</html>
