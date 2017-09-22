@@ -1,11 +1,12 @@
-from django.template.loader import get_template
-from django.shortcuts import render,redirect
-from django.http import HttpResponse,Http404
-from datetime import  datetime
-from .models import Article
+
+from django.shortcuts import render, get_object_or_404
+from datetime import datetime
+from .models import Article, Category, Tag
+from comments.forms import CommentForm
 
 import urllib.request
 import json
+import markdown
 
 url = 'http://open.iciba.com/dsapi'
 page = urllib.request.urlopen(url).read()
@@ -13,25 +14,31 @@ data = page.decode("UTF-8")
 
 data_dict = json.loads(data)
 Qoute = data_dict['content']
-note_Qoute = data_dict['note']
 
-def Homepage(request):
-    template = get_template('index.html')
+
+def homepage(request):
     posts = Article.objects.all()
     now = datetime.now()
     qoute = Qoute
-    note_qoute = note_Qoute
-    html = template.render(locals())
-    return HttpResponse(html)
+    return render(request, 'index.html', locals())
 
-def Showpost(request,category):
-    template = get_template('post.html')
+
+def showpost(request, pk):
     qoute = Qoute
-    note_qoute = note_Qoute
-    try:
-        post = Article.objects.get(category=category)
-        if post != None:
-            html = template.render(locals())
-            return HttpResponse(html)
-    except:
-        return redirect('/')
+    post = get_object_or_404(Article, pk=pk)
+    post.text = markdown.markdown(post.text,
+                                  extensions=[
+                                      'markdown.extensions.extra',       # 本身包含很多拓展
+                                      'markdown.extensions.codehilite',  # 语法高亮拓展
+                                      'markdown.extensions.toc',         # 允许我们自动生成目录
+                                  ])
+
+    form = CommentForm()
+    comment_list = post.comment_set.all()
+    context = {'post': post,
+               'form': form,
+               'comment_list': comment_list
+               }
+    return render(request, 'post.html', locals())
+
+
