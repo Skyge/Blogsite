@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 {% extends 'base.html' %}
 {% block title %} Skyge的博客 {% endblock %}
 {% block headmessage %}
@@ -13,9 +13,15 @@
                 </p>
             </div>
             <div class="panel-body" style="background-color: #ffffdd">
-                <p >
-                    {{ post.abstract }}
-                </p>
+                {% if post.id < 7 %}
+                    <p >
+                        {{ post.text | truncatechars_html:50  }}
+                    </p>
+                {% else %}
+                    <p>
+                         {{ post.abstract }}
+                    </p>
+                {% endif %}
             </div>
             <div class="panel-footer" >
                 <p >
