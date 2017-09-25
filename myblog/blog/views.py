@@ -42,3 +42,16 @@ def showpost(request, pk):
     return render(request, 'post.html', locals())
 
 
+def archives(request, year, month):
+    qoute = Qoute
+    archives_lists = Article.objects.filter(created_time__year=year,
+                                       created_time__month=month
+                                       )
+    return render(request, 'index.html', locals())
+
+
+def category(request, pk):
+    qoute = Qoute
+    cate = get_object_or_404(Category, pk=pk)
+    category_lists = Article.objects.filter(category=cate)
+    return render(request, 'index.html', locals())

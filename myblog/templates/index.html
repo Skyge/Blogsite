@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 {% extends 'base.html' %}
 {% block title %} Skyge的博客 {% endblock %}
 {% block headmessage %}
@@ -9,7 +9,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <p style="font-family:微软雅黑;font-size:14pt;font-weight: bold">
-                    <a href="/post/{{post.category}}">{{ post.title }}</a>
+                    <a href="{{post.get_absolute_url}}">{{ post.title }}</a>
                 </p>
             </div>
             <div class="panel-body" style="background-color: #ffffdd">
@@ -22,15 +22,43 @@
                          {{ post.abstract }}
                     </p>
                 {% endif %}
+
+                <div class="read-more cl-effect-14">
+                    <a href="{{ post.get_absolute_url }}" class="more-link">
+                        继续阅读 <span class="meta-nav">→</span>
+                    </a>
+                </div>
             </div>
+
+
             <div class="panel-footer" >
-                <p >
-                    发布时间：{{ post.created_date | date:"Y m d,h:m:s" }}
+                <span class="post-date">
+                    <time class="entry-date" datetime="{{ post.created_time }}">
+                        {{ post.created_time }}
+                    </time>
+                </span>
+            </div>
+        </div>
+    {% endfor %}
+    {% for archive_list in archives_lists %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <p style="font-family:微软雅黑;font-size:14pt;font-weight: bold">
+                    <a href="{{archive_list.get_absolute_url}}">{{ archive_list.title }}</a>
                 </p>
             </div>
         </div>
-
     {% endfor %}
+    {% for category_list in category_lists %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <p style="font-family:微软雅黑;font-size:14pt;font-weight: bold">
+                    <a href="{{category_list.get_absolute_url}}">{{ category_list.title }}</a>
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+
 {% endblock %}
 </body>
 </html>
