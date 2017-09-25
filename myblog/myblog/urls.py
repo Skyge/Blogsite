@@ -15,10 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from blog.views import Homepage,Showpost
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',Homepage),
-    url(r'^post/(\w+)$',Showpost),
+    url(r'',include('blog.urls')),
 ]
