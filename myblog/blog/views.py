@@ -1,7 +1,8 @@
 
 from django.shortcuts import render, get_object_or_404
 from datetime import datetime
-from .models import Article, Category, Tag
+from .models import Article, Category
+from comments.forms import CommentForm
 
 
 import urllib.request
@@ -33,8 +34,12 @@ def showpost(request, pk):
                                       'markdown.extensions.codehilite',  # 语法高亮拓展
                                       'markdown.extensions.toc',         # 允许我们自动生成目录
                                   ])
-
-
+    form = CommentForm()
+    comment_list = post.comment_set.all()
+    context = {'post': post,
+               'form': form,
+               'comment_list': comment_list
+               }
     return render(request, 'post.html', locals())
 
 
