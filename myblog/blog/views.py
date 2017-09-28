@@ -26,6 +26,7 @@ def homepage(request):
 def showpost(request, pk):
     qoute = Qoute
     post = get_object_or_404(Article, pk=pk)
+    post.increase_views()
     post.text = markdown.markdown(post.text,
                                   extensions=[
                                       'markdown.extensions.extra',       # 本身包含很多拓展

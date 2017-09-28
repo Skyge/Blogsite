@@ -29,14 +29,15 @@
                     </a>
                 </div>
             </div>
-
-
             <div class="panel-footer" >
                 <span class="post-date">
                     <time class="entry-date" datetime="{{ post.created_time }}">
                         {{ post.created_time }}
                     </time>
                 </span>
+                <div class="entry-meta">
+                    <span class="views-count"><a href="{{ post.get_absolute_url }}">{{ post.views }} 阅读</a></span>
+                </div>
             </div>
         </div>
     {% endfor %}
@@ -58,7 +59,6 @@
             </div>
         </div>
     {% endfor %}
-
 {% endblock %}
 </body>
 </html>

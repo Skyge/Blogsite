@@ -8,5 +8,8 @@
     <p style="font-family:微软雅黑;font-size:14pt;font-weight: bold">
         {{ post.text | safe }}
     </p>
+    <div class="entry-meta">
+        <span class="views-count"><a href="{{ post.get_absolute_url }}">{{ post.views }} 阅读</a></span>
+    </div>
 
 {% endblock %}
